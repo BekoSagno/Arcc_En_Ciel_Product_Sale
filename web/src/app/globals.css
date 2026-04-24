@@ -1,0 +1,162 @@
+@import "tailwindcss";
+
+:root {
+  /* Fond crème + texte foncé (charte « Arc en Ciel » / maquettes) — toujours en clair */
+  --background: #f5f5f0;
+  --foreground: #1a1a18;
+
+  --brand-orange: #ff4500;
+  --brand-yellow: #ffd84d;
+  --brand-cyan: #00c9ff;
+  --brand-green: #92fe9d;
+  --brand-brown: #6b4a2b;
+  --brand-teal-deep: #0b6b63;
+}
+
+html {
+  color-scheme: light;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-display-font);
+  --font-hand: var(--font-hand);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Entrées de page douces (respecte reduced-motion ci-dessus) */
+@keyframes ui-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-ui-enter {
+  animation: ui-fade-up 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-ui-enter {
+    animation: none;
+  }
+}
+
+/* Dashboard admin : cartes KPI en cascade */
+.admin-kpi-grid > * {
+  animation: ui-fade-up 0.48s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .admin-kpi-grid > *:nth-child(1) {
+    animation-delay: 0.04s;
+  }
+  .admin-kpi-grid > *:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+  .admin-kpi-grid > *:nth-child(3) {
+    animation-delay: 0.16s;
+  }
+  .admin-kpi-grid > *:nth-child(4) {
+    animation-delay: 0.22s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-kpi-grid > * {
+    animation: none;
+  }
+}
+
+/* TipTap / affichage HTML sécurisé (caractéristiques, cas d’usage) */
+.prose-rich .ProseMirror {
+  outline: none;
+}
+.prose-rich .ProseMirror p {
+  margin: 0.35em 0;
+}
+.prose-rich .ProseMirror p:first-child {
+  margin-top: 0;
+}
+.prose-rich .ProseMirror p:last-child {
+  margin-bottom: 0;
+}
+.prose-rich .ProseMirror ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin: 0.4em 0;
+}
+.prose-rich .ProseMirror ol {
+  list-style: decimal;
+  padding-left: 1.25rem;
+  margin: 0.4em 0;
+}
+.prose-rich .ProseMirror li {
+  margin: 0.15em 0;
+}
+
+.sales-rich-html p {
+  margin: 0.35em 0;
+}
+.sales-rich-html p:first-child {
+  margin-top: 0;
+}
+.sales-rich-html p:last-child {
+  margin-bottom: 0;
+}
+.sales-rich-html ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin: 0.4em 0;
+  text-align: left;
+}
+.sales-rich-html ol {
+  list-style: decimal;
+  padding-left: 1.25rem;
+  margin: 0.4em 0;
+  text-align: left;
+}
+.sales-rich-html li {
+  margin: 0.15em 0;
+}
+.sales-rich-html a {
+  text-decoration: underline;
+  font-weight: 600;
+  color: #0b6b63;
+}
+
+/* Étapes « Comment ça marche » : texte riche aligné sur la carte (taille héritée du composant) */
+.how-it-works-rich.sales-rich-html p {
+  margin: 0.25em 0;
+  font-size: inherit;
+}
+.how-it-works-rich.sales-rich-html ul,
+.how-it-works-rich.sales-rich-html ol {
+  padding-left: 1rem;
+  margin: 0.25em 0;
+  font-size: inherit;
+  text-align: left;
+}
+.how-it-works-rich.sales-rich-html li {
+  margin: 0.12em 0;
+}
